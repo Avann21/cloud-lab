@@ -1,4 +1,6 @@
 # Cloud Computing Laboratory
-Student Name:
-Student ID:
-Class:
+
+Student Name: Trần Đình Bảo Long
+Student ID: 239679
+Class:DH23TIN10
+
