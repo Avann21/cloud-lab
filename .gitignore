@@ -1,9 +1,21 @@
-*.log
-*.tmp
+# Dependencies
+node_modules/
+
+# Environment
+.env
+
+# Build outputs
 bin/
 build/
+dist/
+
+# Logs & temp
 *.log
 *.tmp
+
+# Python
 __pycache__/
-.env
-.env
+
+# OS files
+.DS_Store
+Thumbs.db

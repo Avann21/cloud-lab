@@ -1,0 +1,25 @@
+services:
+  # Service Backend (Node.js/Express)
+  backend:
+    build:
+      context: ./nern-demo       # Đường dẫn đến thư mục backend
+      dockerfile: Dockerfile
+    container_name: mern-backend
+    ports:
+      - "5000:5000"              # Ánh xạ cổng host 5000 sang container 5000
+    environment:
+      - PORT=5000
+      - MONGODB_URI=mongodb+srv://mern-user:long1234@lab-mern.wlyztnq.mongodb.net/?appName=Lab-MERN
+    restart: unless-stopped
+
+  # Service Frontend (React + Nginx)
+  frontend:
+    build:
+      context: ./client          # Đường dẫn đến thư mục frontend
+      dockerfile: Dockerfile
+    container_name: mern-frontend
+    ports:
+      - "3000:80"                # Ánh xạ cổng host 3000 sang cổng 80 của Nginx
+    depends_on:
+      - backend
+    restart: unless-stopped

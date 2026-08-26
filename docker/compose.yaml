@@ -1,0 +1,30 @@
+services:
+  # Backend - Express.js + MongoDB
+  backend:
+    build:
+      context: ../nern-demo
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    env_file:
+      - ../nern-demo/.env
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  # Frontend - React + Vite (served by Nginx)
+  frontend:
+    build:
+      context: ../client
+      dockerfile: ../docker/Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
