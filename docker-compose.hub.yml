@@ -1,5 +1,5 @@
 services:
-  # Backend - dùng Image từ Docker Hub (không build lại)
+ 
   backend:
     image: avan21/mern-backend:1.0
     container_name: mern-backend
@@ -10,7 +10,7 @@ services:
       - MONGODB_URI=mongodb+srv://mern-user:long1234@lab-mern.wlyztnq.mongodb.net/?appName=Lab-MERN
     restart: unless-stopped
 
-  # Frontend - dùng Image từ Docker Hub (không build lại)
+
   frontend:
     image: avan21/mern-frontend:1.0
     container_name: mern-frontend
