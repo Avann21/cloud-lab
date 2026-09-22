@@ -12,7 +12,7 @@ services:
 
 
   frontend:
-    image: avan21/mern-frontend:1.0
+    image: avan21/mern-frontend:2.0
     container_name: mern-frontend
     ports:
       - "3000:80"

@@ -118,7 +118,8 @@ function App() {
 
   return (
     <div className="app-container">
-      <h1>Quản lý sinh viên</h1>
+      <h1>Quản lý sinh viên - Cloud Lab</h1>
+      <p className="subtitle">Trần Đình Bảo Long • MSSV 239579 • Lớp DH23TIN10</p>
 
       {/* FORM THÊM SINH VIÊN */}
       <div className="form-section">

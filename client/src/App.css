@@ -39,3 +39,11 @@ th {
   margin-top: 50px;
   font-size: 1.2rem;
 }
+.app-container h1 {
+  color: #1a73e8;
+}
+.subtitle {
+  color: #666;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
