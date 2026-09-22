@@ -1,0 +1,21 @@
+services:
+  # Backend - dùng Image từ Docker Hub (không build lại)
+  backend:
+    image: avan21/mern-backend:1.0
+    container_name: mern-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGODB_URI=mongodb+srv://mern-user:long1234@lab-mern.wlyztnq.mongodb.net/?appName=Lab-MERN
+    restart: unless-stopped
+
+  # Frontend - dùng Image từ Docker Hub (không build lại)
+  frontend:
+    image: avan21/mern-frontend:1.0
+    container_name: mern-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
