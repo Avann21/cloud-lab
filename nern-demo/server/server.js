@@ -81,7 +81,7 @@ app.delete('/api/students/:id', async (req, res) => {
   }
 });
 
-// Khởi động server
-app.listen(PORT, () => {
+// Khởi động server (0.0.0.0 bắt buộc trên Render PaaS)
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Server hoạt động trên cổng ${PORT}`);
 });

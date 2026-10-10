@@ -1,0 +1,29 @@
+services:
+  # Backend API (Node/Express) - public web service
+  - type: web
+    name: mern-backend
+    runtime: node
+    rootDir: nern-demo
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/hello
+    plan: free
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+
+  # Frontend (Vite build -> CDN static). VITE_API_URL baked at build time.
+  # Sau khi backend deploy, sua value thanh URL thuc te cua backend.
+  - type: web
+    name: mern-frontend
+    runtime: static
+    rootDir: client
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        value: https://mern-backend.onrender.com
