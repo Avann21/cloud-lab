@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 
-const API_URL = `${(import.meta.env.VITE_API_URL || '').replace(/\/$/, '')}/api/students`;
+// Single-domain (Cau 27/28/33): goi API tuong doi cung origin,
+// PaaS/Express tu rewrite /api/* ve backend - khoi CORS, khoi VITE_API_URL.
+const API_URL = '/api/students';
 
 function App() {
   const [students, setStudents] = useState([]);
@@ -120,6 +122,7 @@ function App() {
     <div className="app-container">
       <h1>Quản lý sinh viên - Cloud Lab</h1>
       <p className="subtitle">Trần Đình Bảo Long • MSSV 239579 • Lớp DH23TIN10</p>
+      <p style={{ background: '#16a34a', color: '#fff', display: 'inline-block', padding: '4px 12px', borderRadius: 12 }}>Phiên bản 2.0 - Production Cloud PaaS (Auto-Deployed)</p>
 
       {/* FORM THÊM SINH VIÊN */}
       <div className="form-section">
@@ -210,6 +213,7 @@ function App() {
           </table>
         )}
       </div>
+      <footer style={{ marginTop: 24, padding: 12, textAlign: 'center', color: '#666', borderTop: '1px solid #ddd' }}>Phiên bản 2.0 - Production Cloud PaaS (Auto-Deployed)</footer>
     </div>
   );
 }

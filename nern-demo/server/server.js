@@ -2,6 +2,8 @@ const dns = require('dns');
 dns.setServers(['8.8.8.8', '8.8.4.4']);
 
 const express = require('express');
+const path = require('path');
+const fs = require('fs');
 const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
@@ -22,6 +24,12 @@ mongoose.connect(process.env.MONGODB_URI)
 const Student = require('./models/Student');
 
 // ------------------- ROUTES -------------------
+
+// Health Check Endpoint cho Cloud PaaS Monitoring
+app.get('/health', (req, res) => {
+  res.status(200).json({status: 'UP',timestamp: new Date(),uptime: process.uptime()
+  });
+});
 
 // GET /api/hello
 app.get('/api/hello', (req, res) => {
@@ -81,7 +89,18 @@ app.delete('/api/students/:id', async (req, res) => {
   }
 });
 
+// Serve frontend build tren cung origin (single-domain: khoi CORS).
+// Bo qua khi chua build (vd: chay backend rieng bang docker-compose).
+const clientDist = path.join(__dirname, '../../client/dist');
+if (fs.existsSync(clientDist)) {
+  app.use(express.static(clientDist));
+  // Express 5: dung regex thay cho '*' ('*' crash path-to-regexp v8)
+  app.get(/^(?!\/api).*/, (req, res) => {
+    res.sendFile(path.join(clientDist, 'index.html'));
+  });
+}
+
 // Khởi động server (0.0.0.0 bắt buộc trên Render PaaS)
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 Server hoạt động trên cổng ${PORT}`);
+  console.log(`🚀 Server hoạt động trên cổng ${PORT} (Auto-Deploy OK)`);
 });
