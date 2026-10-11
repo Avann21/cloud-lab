@@ -121,7 +121,7 @@ function App() {
   return (
     <div className="app-container">
       <h1>Quản lý sinh viên - Cloud Lab</h1>
-      <p className="subtitle">Trần Đình Bảo Long • MSSV 239579 • Lớp DH23TIN10</p>
+      <p className="subtitle">Trần Đình Bảo Long • MSSV 239679 • Lớp DH23TIN10</p>
       <p style={{ background: '#16a34a', color: '#fff', display: 'inline-block', padding: '4px 12px', borderRadius: 12 }}>Phiên bản 2.0 - Production Cloud PaaS (Auto-Deployed)</p>
 
       {/* FORM THÊM SINH VIÊN */}
